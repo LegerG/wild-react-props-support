@@ -1,0 +1,78 @@
+import axios from "axios";
+
+export async function getRandomUser() {
+  const result = await axios.get("https://randomuser.me/api/");
+  const data = result.data.results[0];
+
+  // Deconstruct the data object
+  const { title, first: firstName, last: lastName } = data.name;
+
+  return {
+    gender: data.gender,
+    title,
+    firstName,
+    lastName,
+    email: data.email,
+    phone: data.phone,
+    location: data.location.city,
+    pictureUrl: data.picture.large,
+    countryCode: data.nat,
+  };
+}
+
+/**
+
+# Example of the API response
+
+
+```json
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": { "title": "Mr", "first": "Rogerio", "last": "Robledo" },
+      "location": {
+        "street": { "number": 9786, "name": "Peatonal Jalisco" },
+        "city": "Ixtlahuaca",
+        "state": "Chiapas",
+        "country": "Mexico",
+        "postcode": 56104,
+        "coordinates": { "latitude": "29.4953", "longitude": "-17.0371" },
+        "timezone": {
+          "offset": "0:00",
+          "description": "Western Europe Time, London, Lisbon, Casablanca"
+        }
+      },
+      "email": "rogerio.robledo@example.com",
+      "login": {
+        "uuid": "dc7fb628-1c80-41d5-892c-13cd0fad4e71",
+        "username": "blackrabbit170",
+        "password": "matthews",
+        "salt": "eVIafZxI",
+        "md5": "4f0e50e2057580c911c48f7c08ee20a4",
+        "sha1": "117bf4c902d24dd2adea1a9c6ae43b544967985e",
+        "sha256": "f2791d0fb13ead07bfb531b71ff7178e895994a3fc0c2ae9b5e533a159012fd7"
+      },
+      "dob": { "date": "1955-11-05T05:24:44.492Z", "age": 66 },
+      "registered": { "date": "2018-02-06T07:24:32.665Z", "age": 4 },
+      "phone": "(609) 682 9414",
+      "cell": "(696) 997 5072",
+      "id": { "name": "NSS", "value": "15 93 23 3602 2" },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/85.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/85.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/85.jpg"
+      },
+      "nat": "MX"
+    }
+  ],
+  "info": {
+    "seed": "b8884286a08d77bb",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}
+```
+
+*/
