@@ -11,4 +11,4 @@ Rappel :
 Pour démarrer le projet pensez à faire
 
 1. `npm i` => installer les dépendances
-1. `npm run start` => démarrer le serveurs
+1. `npm run start` => démarrer le serveur
